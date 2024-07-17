@@ -53,6 +53,7 @@
             color: white;
         }
 
+
         .btn {
             width: 60%;
             padding: 10px;
@@ -94,32 +95,12 @@
                 <input type="password" id="password" required>
                 <span class="error" id="passwordError"></span>
             </div>
-            <button type="submit" class="btn" id="loginButton">Entrar</button>
+            <a href="#" class="btn" id="loginButton">Entrar</a>
             <span class="error" id="loginError"></span>
         </form>
     </div>
-
-    <!-- Adicione os scripts do Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
     <script>
-        // Configuração do Firebase
-        const firebaseConfig = {
-            apiKey: "AIzaSyCgohldyGpDsh5HAc28o4atFhW4AyG0zvE",
-            authDomain: "site-criptografia.firebaseapp.com",
-            projectId: "site-criptografia",
-            storageBucket: "site-criptografia.appspot.com",
-            messagingSenderId: "695883597046",
-            appId: "1:695883597046:web:e20e4da045995c38ef58d7",
-            measurementId: "G-09VBYV6LP9"
-        };
-
-        // Inicialize o Firebase
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-
-        // Função de login
-        document.getElementById('loginForm').addEventListener('submit', function(event) {
+        document.getElementById('loginButton').addEventListener('click', function(event) {
             event.preventDefault();
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
@@ -140,14 +121,19 @@
             }
 
             if (valid) {
-                auth.signInWithEmailAndPassword(email, password)
-                    .then((userCredential) => {
-                        // Usuário autenticado
-                        window.location.href = 'https://www.youtube.com'; // Redireciona para o YouTube
-                    })
-                    .catch((error) => {
-                        document.getElementById('loginError').innerText = 'Email ou senha incorretos.';
-                    });
+                if (email === "kohina159@gmail.com" && password === "1234") {
+                    const newWindow = window.open("https://www.google.com/search?q=funcionou", "_blank");
+                    if (newWindow) {
+                        newWindow.focus();
+                        setTimeout(() => {
+                            window.close();
+                        }, 1000);
+                    } else {
+                        alert('Por favor, permita pop-ups para este site.');
+                    }
+                } else {
+                    document.getElementById('loginError').innerText = 'Email ou senha incorretos.';
+                }
             }
         });
     </script>
