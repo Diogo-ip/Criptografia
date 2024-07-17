@@ -12,6 +12,7 @@
             color: #c9d1d9;
             display: flex;
             height: 100vh;
+            overflow: hidden;
         }
 
         .sidebar {
@@ -20,6 +21,9 @@
             padding: 20px;
             display: flex;
             flex-direction: column;
+            overflow-y: auto;
+            transition: transform 0.3s ease;
+            position: relative;
         }
 
         .sidebar h2 {
@@ -29,6 +33,7 @@
         .sidebar ul {
             list-style: none;
             padding: 0;
+            margin: 0;
         }
 
         .sidebar li {
@@ -40,9 +45,12 @@
             text-decoration: none;
             display: flex;
             align-items: center;
+            padding: 5px;
+            border-radius: 4px;
         }
 
         .sidebar a:hover {
+            background-color: #21262d;
             color: #58a6ff;
         }
 
@@ -52,9 +60,10 @@
             padding: 20px;
             display: flex;
             flex-direction: column;
+            overflow-y: auto;
         }
 
-        .content .header {
+        .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -62,11 +71,11 @@
             padding-bottom: 10px;
         }
 
-        .content .header h1 {
+        .header h1 {
             color: #c9d1d9;
         }
 
-        .content .header button {
+        .header button {
             background-color: #21262d;
             border: none;
             color: #c9d1d9;
@@ -75,29 +84,29 @@
             border-radius: 5px;
         }
 
-        .content .header button:hover {
+        .header button:hover {
             background-color: #58a6ff;
         }
 
-        .content .main {
+        .main {
             display: flex;
             flex-direction: column;
             margin-top: 20px;
         }
 
-        .content .main .section {
+        .section {
             margin-bottom: 20px;
         }
 
-        .content .main .section h2 {
+        .section h2 {
             color: #c9d1d9;
         }
 
-        .content .main .section p {
+        .section p {
             color: #8b949e;
         }
 
-        .content .main .section button {
+        .section button {
             background-color: #238636;
             border: none;
             color: white;
@@ -107,8 +116,53 @@
             margin-top: 10px;
         }
 
-        .content .main .section button:hover {
+        .section button:hover {
             background-color: #2ea043;
+        }
+
+        /* Mobile styles */
+        @media (max-width: 768px) {
+            .sidebar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100%;
+                transform: translateX(-100%);
+                z-index: 1000;
+            }
+
+            .sidebar.visible {
+                transform: translateX(0);
+            }
+
+            .overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                display: none;
+                z-index: 999;
+            }
+
+            .overlay.visible {
+                display: block;
+            }
+
+            .header .menu-button {
+                display: block;
+            }
+
+            .header h1 {
+                flex-grow: 1;
+                text-align: center;
+            }
+        }
+
+        /* Desktop styles */
+        .header .menu-button {
+            display: none;
         }
     </style>
     <script type="module">
@@ -143,9 +197,26 @@
           console.error('Erro ao deslogar:', error);
         });
       });
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const menuButton = document.querySelector('.menu-button');
+        const sidebar = document.querySelector('.sidebar');
+        const overlay = document.querySelector('.overlay');
+
+        menuButton.addEventListener('click', () => {
+          sidebar.classList.toggle('visible');
+          overlay.classList.toggle('visible');
+        });
+
+        overlay.addEventListener('click', () => {
+          sidebar.classList.remove('visible');
+          overlay.classList.remove('visible');
+        });
+      });
     </script>
 </head>
 <body>
+    <div class="overlay"></div>
     <div class="sidebar">
         <h2>Diogo</h2>
         <ul>
@@ -182,6 +253,7 @@
     </div>
     <div class="content">
         <div class="header">
+            <button class="menu-button">&#9776;</button>
             <h1>Sem descrição</h1>
             <button>Salvar</button>
         </div>
