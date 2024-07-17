@@ -53,7 +53,6 @@
             color: white;
         }
 
-
         .btn {
             width: 60%;
             padding: 10px;
@@ -80,6 +79,62 @@
             margin-bottom: 10px;
         }
     </style>
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+      import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+      
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyBSKWl-dEeB19s83edSTHkH-AVonc0TMII",
+        authDomain: "criptografiaa-d3f1d.firebaseapp.com",
+        projectId: "criptografiaa-d3f1d",
+        storageBucket: "criptografiaa-d3f1d.appspot.com",
+        messagingSenderId: "772676033984",
+        appId: "1:772676033984:web:407729b86105a3d2b83c25"
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+
+      // Function to handle login
+      async function login() {
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        let valid = true;
+
+        if (!email) {
+            document.getElementById('emailError').innerText = 'O email é obrigatório.';
+            valid = false;
+        } else {
+            document.getElementById('emailError').innerText = '';
+        }
+
+        if (!password) {
+            document.getElementById('passwordError').innerText = 'A senha é obrigatória.';
+            valid = false;
+        } else {
+            document.getElementById('passwordError').innerText = '';
+        }
+
+        if (valid) {
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+                window.location.href = 'https://www.google.com/search?q=funcionou'; // Redireciona para o link desejado
+            } catch (error) {
+                document.getElementById('loginError').innerText = 'Email ou senha incorretos.';
+            }
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('loginButton').addEventListener('click', function(event) {
+          event.preventDefault();
+          login();
+        });
+      });
+    </script>
 </head>
 <body>
     <div class="login-container">
@@ -99,43 +154,5 @@
             <span class="error" id="loginError"></span>
         </form>
     </div>
-    <script>
-        document.getElementById('loginButton').addEventListener('click', function(event) {
-            event.preventDefault();
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            let valid = true;
-
-            if (!email) {
-                document.getElementById('emailError').innerText = 'O email é obrigatório.';
-                valid = false;
-            } else {
-                document.getElementById('emailError').innerText = '';
-            }
-
-            if (!password) {
-                document.getElementById('passwordError').innerText = 'A senha é obrigatória.';
-                valid = false;
-            } else {
-                document.getElementById('passwordError').innerText = '';
-            }
-
-            if (valid) {
-                if (email === "kohina159@gmail.com" && password === "1234") {
-                    const newWindow = window.open("https://www.google.com/search?q=funcionou", "_blank");
-                    if (newWindow) {
-                        newWindow.focus();
-                        setTimeout(() => {
-                            window.close();
-                        }, 1000);
-                    } else {
-                        alert('Por favor, permita pop-ups para este site.');
-                    }
-                } else {
-                    document.getElementById('loginError').innerText = 'Email ou senha incorretos.';
-                }
-            }
-        });
-    </script>
 </body>
 </html>
