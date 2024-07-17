@@ -121,7 +121,7 @@
         if (valid) {
             try {
                 await signInWithEmailAndPassword(auth, email, password);
-                window.location.href = './Pagina_Inicial/Pagina_Inicial.html'; // Redireciona para a página local
+                window.location.href = './Pagina_Inicial/pagina_inicial.html'; // Redireciona para a página local
             } catch (error) {
                 document.getElementById('loginError').innerText = 'Email ou senha incorretos.';
             }
