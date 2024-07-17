@@ -166,11 +166,9 @@
         }
     </style>
     <script type="module">
-      // Import the functions you need from the SDKs you need
       import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
       import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
 
-      // Your web app's Firebase configuration
       const firebaseConfig = {
         apiKey: "AIzaSyBSKWl-dEeB19s83edSTHkH-AVonc0TMII",
         authDomain: "criptografiaa-d3f1d.firebaseapp.com",
@@ -180,22 +178,13 @@
         appId: "1:772676033984:web:407729b86105a3d2b83c25"
       };
 
-      // Initialize Firebase
       const app = initializeApp(firebaseConfig);
       const auth = getAuth(app);
 
-      // Check authentication status
       onAuthStateChanged(auth, (user) => {
         if (!user) {
-          window.location.href = '../index.html'; // Redireciona para a página de login no diretório anterior
+          window.location.href = '../index.html';
         }
-      });
-
-      // Logout when the user closes the tab or browser
-      window.addEventListener('beforeunload', () => {
-        signOut(auth).catch((error) => {
-          console.error('Erro ao deslogar:', error);
-        });
       });
 
       document.addEventListener('DOMContentLoaded', () => {
@@ -224,25 +213,31 @@
             <li><a href="#">Configuração e instalação</a></li>
             <li><a href="#">Seu Authtoken</a></li>
             <li><a href="#">Borda da Nuvem</a></li>
-            <ul>
-                <li><a href="#">Pontos finais</a></li>
-                <li><a href="#">Arestas</a></li>
-                <li><a href="#">Domínios</a></li>
-                <li><a href="#">Endereços TCP</a></li>
-                <li><a href="#">Usuários do aplicativo</a></li>
-            </ul>
+            <div>
+                <ul>
+                    <li><a href="#">Pontos finais</a></li>
+                    <li><a href="#">Arestas</a></li>
+                    <li><a href="#">Domínios</a></li>
+                    <li><a href="#">Endereços TCP</a></li>
+                    <li><a href="#">Usuários do aplicativo</a></li>
+                </ul>
+            </div>
             <li><a href="#">Túneis</a></li>
-            <ul>
-                <li><a href="#">Agentes</a></li>
-                <li><a href="#">Tokens de autenticação</a></li>
-                <li><a href="#">Chaves Públicas SSH</a></li>
-                <li><a href="#">Entrada</a></li>
-            </ul>
+            <div>
+                <ul>
+                    <li><a href="#">Agentes</a></li>
+                    <li><a href="#">Tokens de autenticação</a></li>
+                    <li><a href="#">Chaves Públicas SSH</a></li>
+                    <li><a href="#">Entrada</a></li>
+                </ul>
+            </div>
             <li><a href="#">Observabilidade</a></li>
-            <ul>
-                <li><a href="#">Eventos</a></li>
-                <li><a href="#">Inspector de trânsito</a></li>
-            </ul>
+            <div>
+                <ul>
+                    <li><a href="#">Eventos</a></li>
+                    <li><a href="#">Inspector de trânsito</a></li>
+                </ul>
+            </div>
             <li><a href="#">API</a></li>
             <li><a href="#">Segurança</a></li>
             <li><a href="#">Cobrança</a></li>
