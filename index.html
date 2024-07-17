@@ -94,10 +94,11 @@
                 <input type="password" id="password" required>
                 <span class="error" id="passwordError"></span>
             </div>
-            <a href="#" class="btn" id="loginButton">Entrar</a>
+            <button type="submit" class="btn" id="loginButton">Entrar</button>
             <span class="error" id="loginError"></span>
         </form>
     </div>
+
     <!-- Adicione os scripts do Firebase -->
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
@@ -117,7 +118,8 @@
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
 
-        document.getElementById('loginButton').addEventListener('click', function(event) {
+        // Função de login
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
             event.preventDefault();
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
@@ -142,7 +144,7 @@
                     .then((userCredential) => {
                         // Usuário autenticado
                         alert('Login bem-sucedido!');
-                        window.location.href = 'https://www.google.com/search?q=funcionou'; // Redireciona para uma página de sucesso
+                        window.location.href = 'success.html'; // Redireciona para uma página de sucesso
                     })
                     .catch((error) => {
                         document.getElementById('loginError').innerText = 'Email ou senha incorretos.';
