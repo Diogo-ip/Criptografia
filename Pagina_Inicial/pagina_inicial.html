@@ -137,11 +137,18 @@
         }
       });
 
-      // Logout when the user closes the tab or browser
-      window.addEventListener('beforeunload', () => {
+      // Logout when the user clicks a logout button
+      function logout() {
         signOut(auth).catch((error) => {
           console.error('Erro ao deslogar:', error);
         });
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const logoutButton = document.querySelector('#logoutButton');
+        if (logoutButton) {
+          logoutButton.addEventListener('click', logout);
+        }
       });
     </script>
 </head>
@@ -183,7 +190,7 @@
     <div class="content">
         <div class="header">
             <h1>Sem descrição</h1>
-            <button>Salvar</button>
+            <button id="logoutButton">Sair</button>
         </div>
         <div class="main">
             <div class="section">
