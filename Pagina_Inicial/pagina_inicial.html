@@ -15,12 +15,6 @@
             overflow: hidden; /* Evita a rolagem da página */
         }
 
-        .container {
-            display: flex;
-            width: 100%;
-            height: 100%;
-        }
-
         .sidebar {
             width: 250px;
             background-color: #161b22;
@@ -181,54 +175,52 @@
         <span></span>
         <span></span>
     </button>
-    <div class="container">
-        <div class="sidebar">
-            <h2>Diogo</h2>
-            <ul>
-                <li><a href="#">Começando</a></li>
-                <li><a href="#">Configuração e instalação</a></li>
-                <li><a href="#">Seu Authtoken</a></li>
-                <li><a href="#">Borda da Nuvem</a></li>
-                <li><a href="#">Pontos finais</a></li>
-                <li><a href="#">Arestas</a></li>
-                <li><a href="#">Domínios</a></li>
-                <li><a href="#">Endereços TCP</a></li>
-                <li><a href="#">Usuários do aplicativo</a></li>
-                <li><a href="#">Túneis</a></li>
-                <li><a href="#">Agentes</a></li>
-                <li><a href="#">Tokens de autenticação</a></li>
-                <li><a href="#">Chaves Públicas SSH</a></li>
-                <li><a href="#">Entrada</a></li>
-                <li><a href="#">Observabilidade</a></li>
-                <li><a href="#">Eventos</a></li>
-                <li><a href="#">Inspector de trânsito</a></li>
-                <li><a href="#">API</a></li>
-                <li><a href="#">Segurança</a></li>
-                <li><a href="#">Cobrança</a></li>
-                <li><a href="#">Uso</a></li>
-            </ul>
+    <div class="sidebar">
+        <h2>Diogo</h2>
+        <ul>
+            <li><a href="#">Começando</a></li>
+            <li><a href="#">Configuração e instalação</a></li>
+            <li><a href="#">Seu Authtoken</a></li>
+            <li><a href="#">Borda da Nuvem</a></li>
+            <li><a href="#">Pontos finais</a></li>
+            <li><a href="#">Arestas</a></li>
+            <li><a href="#">Domínios</a></li>
+            <li><a href="#">Endereços TCP</a></li>
+            <li><a href="#">Usuários do aplicativo</a></li>
+            <li><a href="#">Túneis</a></li>
+            <li><a href="#">Agentes</a></li>
+            <li><a href="#">Tokens de autenticação</a></li>
+            <li><a href="#">Chaves Públicas SSH</a></li>
+            <li><a href="#">Entrada</a></li>
+            <li><a href="#">Observabilidade</a></li>
+            <li><a href="#">Eventos</a></li>
+            <li><a href="#">Inspector de trânsito</a></li>
+            <li><a href="#">API</a></li>
+            <li><a href="#">Segurança</a></li>
+            <li><a href="#">Cobrança</a></li>
+            <li><a href="#">Uso</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="header">
+            <h1>Sem descrição</h1>
+            <button id="logoutButton">Sair</button>
         </div>
-        <div class="content">
-            <div class="header">
-                <h1>Sem descrição</h1>
-                <button id="logoutButton">Sair</button>
+        <div class="main">
+            <div class="section">
+                <h2>Pontos finais</h2>
+                <p>https://puma-comic-earwig.ngrok-free.app</p>
+                <button>Iniciar um túnel</button>
             </div>
-            <div class="main">
-                <div class="section">
-                    <h2>Pontos finais</h2>
-                    <p>https://puma-comic-earwig.ngrok-free.app</p>
-                    <button>Iniciar um túnel</button>
-                </div>
-                <div class="section">
-                    <h2>Tráfego</h2>
-                    <p>Status: Não há túneis com rótulos correspondentes online.</p>
-                </div>
-                <div class="section">
-                    <h2>Adicionar módulos</h2>
-                    <p>Segurança: Proteja o tráfego através do seu Edge adicionando estes módulos.</p>
-                    <button>Adicionar TLS mútuo</button>
-                    <button>Adicionar restrições de IP</button>
-                </div>
+            <div class="section">
+                <h2>Tráfego</h2>
+                <p>Status: Não há túneis com rótulos correspondentes online.</p>
+            </div>
+            <div class="section">
+                <h2>Adicionar módulos</h2>
+                <p>Segurança: Proteja o tráfego através do seu Edge adicionando estes módulos.</p>
+                <button>Adicionar TLS mútuo</button>
+                <button>Adicionar restrições de IP</button>
             </div>
         </div>
     </div>
