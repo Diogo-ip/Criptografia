@@ -1,53 +1,200 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tabela Simples</title>
+    <title>Replicação da Interface</title>
     <style>
-        table {
-            width: 50%;
-            border-collapse: collapse;
-            margin: 50px 0;
-            font-size: 18px;
-            text-align: left;
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #0d1117;
+            color: #c9d1d9;
+            display: flex;
+            height: 100vh;
         }
-        th, td {
-            padding: 12px;
-            border-bottom: 1px solid #ddd;
+
+        .sidebar {
+            width: 250px;
+            background-color: #161b22;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
         }
-        th {
-            background-color: #f2f2f2;
+
+        .sidebar h2 {
+            color: #58a6ff;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar li {
+            margin: 10px 0;
+        }
+
+        .sidebar a {
+            color: #c9d1d9;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .sidebar a:hover {
+            color: #58a6ff;
+        }
+
+        .content {
+            flex-grow: 1;
+            background-color: #0d1117;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #21262d;
+            padding-bottom: 10px;
+        }
+
+        .content .header h1 {
+            color: #c9d1d9;
+        }
+
+        .content .header button {
+            background-color: #21262d;
+            border: none;
+            color: #c9d1d9;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .content .header button:hover {
+            background-color: #58a6ff;
+        }
+
+        .content .main {
+            display: flex;
+            flex-direction: column;
+            margin-top: 20px;
+        }
+
+        .content .main .section {
+            margin-bottom: 20px;
+        }
+
+        .content .main .section h2 {
+            color: #c9d1d9;
+        }
+
+        .content .main .section p {
+            color: #8b949e;
+        }
+
+        .content .main .section button {
+            background-color: #238636;
+            border: none;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .content .main .section button:hover {
+            background-color: #2ea043;
         }
     </style>
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+      import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyBSKWl-dEeB19s83edSTHkH-AVonc0TMII",
+        authDomain: "criptografiaa-d3f1d.firebaseapp.com",
+        projectId: "criptografiaa-d3f1d",
+        storageBucket: "criptografiaa-d3f1d.appspot.com",
+        messagingSenderId: "772676033984",
+        appId: "1:772676033984:web:407729b86105a3d2b83c25"
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+
+      // Check authentication status
+      onAuthStateChanged(auth, (user) => {
+        if (!user) {
+          window.location.href = './index.html'; // Redireciona para a página de login se não estiver autenticado
+        }
+      });
+    </script>
 </head>
 <body>
-    <h2>Tabela com Três Colunas</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Coluna 1</th>
-                <th>Coluna 2</th>
-                <th>Coluna 3</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Dados 1</td>
-                <td>Dados 2</td>
-                <td>Dados 3</td>
-            </tr>
-            <tr>
-                <td>Dados 4</td>
-                <td>Dados 5</td>
-                <td>Dados 6</td>
-            </tr>
-            <tr>
-                <td>Dados 7</td>
-                <td>Dados 8</td>
-                <td>Dados 9</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="sidebar">
+        <h2>Diogo</h2>
+        <ul>
+            <li><a href="#">Começando</a></li>
+            <li><a href="#">Configuração e instalação</a></li>
+            <li><a href="#">Seu Authtoken</a></li>
+            <li><a href="#">Borda da Nuvem</a></li>
+            <ul>
+                <li><a href="#">Pontos finais</a></li>
+                <li><a href="#">Arestas</a></li>
+                <li><a href="#">Domínios</a></li>
+                <li><a href="#">Endereços TCP</a></li>
+                <li><a href="#">Usuários do aplicativo</a></li>
+            </ul>
+            <li><a href="#">Túneis</a></li>
+            <ul>
+                <li><a href="#">Agentes</a></li>
+                <li><a href="#">Tokens de autenticação</a></li>
+                <li><a href="#">Chaves Públicas SSH</a></li>
+                <li><a href="#">Entrada</a></li>
+            </ul>
+            <li><a href="#">Observabilidade</a></li>
+            <ul>
+                <li><a href="#">Eventos</a></li>
+                <li><a href="#">Inspector de trânsito</a></li>
+            </ul>
+            <li><a href="#">API</a></li>
+            <li><a href="#">Segurança</a></li>
+            <li><a href="#">Cobrança</a></li>
+            <li><a href="#">Uso</a></li>
+            <li><a href="#">Apoiar</a></li>
+            <li><a href="#">Documentação</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="header">
+            <h1>Sem descrição</h1>
+            <button>Salvar</button>
+        </div>
+        <div class="main">
+            <div class="section">
+                <h2>Pontos finais</h2>
+                <p>https://puma-comic-earwig.ngrok-free.app</p>
+                <button>Iniciar um túnel</button>
+            </div>
+            <div class="section">
+                <h2>Tráfego</h2>
+                <p>Status: Não há túneis com rótulos correspondentes online.</p>
+            </div>
+            <div class="section">
+                <h2>Adicionar módulos</h2>
+                <p>Segurança: Proteja o tráfego através do seu Edge adicionando estes módulos.</p>
+                <button>Adicionar TLS mútuo</button>
+                <button>Adicionar restrições de IP</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
