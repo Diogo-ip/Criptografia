@@ -12,7 +12,6 @@
             color: #c9d1d9;
             display: flex;
             height: 100vh;
-            overflow: hidden; /* Evita a rolagem da página */
         }
 
         .sidebar {
@@ -23,15 +22,6 @@
             flex-direction: column;
             overflow-y: auto; /* Adiciona rolagem interna */
             height: 100vh; /* Faz a sidebar ocupar toda a altura da tela */
-            position: fixed; /* Fixar a sidebar na tela */
-            left: 0;
-            top: 0;
-            transition: transform 0.3s ease; /* Transição suave para abertura/fechamento */
-            z-index: 100; /* Garante que a sidebar fique acima do conteúdo */
-        }
-
-        .sidebar.closed {
-            transform: translateX(-100%); /* Esconde a sidebar fora da tela */
         }
 
         .sidebar h2 {
@@ -53,7 +43,7 @@
             color: #c9d1d9;
             text-decoration: none;
             display: block; /* Garante que o link ocupe toda a largura */
-            font-size: 0.9em; /* Reduz o tamanho da fonte dos itens */
+            font-size: 1.1em; /* Aumenta o tamanho da fonte dos itens */
             padding: 5px 0; /* Adiciona um pouco de espaçamento */
         }
 
@@ -67,12 +57,6 @@
             padding: 20px;
             display: flex;
             flex-direction: column;
-            margin-left: 250px; /* Margem para dar espaço à sidebar */
-            transition: margin-left 0.3s ease; /* Transição suave para abertura/fechamento */
-        }
-
-        .content.shifted {
-            margin-left: 0; /* Remove a margem quando a sidebar está fechada */
         }
 
         .content .header {
@@ -131,50 +115,9 @@
         .content .main .section button:hover {
             background-color: #2ea043;
         }
-
-        .menu-button {
-            display: none; /* Esconde o botão por padrão */
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background-color: #161b22;
-            border: none;
-            color: #c9d1d9;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            z-index: 1000; /* Garante que o botão fique sobre outros elementos */
-        }
-
-        .menu-button span {
-            display: block;
-            width: 24px;
-            height: 2px;
-            background-color: #c9d1d9;
-            margin: 4px 0;
-        }
-
-        @media (max-width: 768px) {
-            .sidebar {
-                width: 200px; /* Ajusta a largura da sidebar em dispositivos móveis */
-            }
-
-            .content {
-                margin-left: 0; /* Remove a margem para dispositivos móveis */
-            }
-
-            .menu-button {
-                display: block; /* Exibe o botão em dispositivos móveis */
-            }
-        }
     </style>
 </head>
 <body>
-    <button class="menu-button" id="menuButton">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
     <div class="sidebar">
         <h2>Diogo</h2>
         <ul>
@@ -224,15 +167,5 @@
             </div>
         </div>
     </div>
-
-    <script>
-        document.getElementById('menuButton').addEventListener('click', function() {
-            const sidebar = document.querySelector('.sidebar');
-            const content = document.querySelector('.content');
-
-            sidebar.classList.toggle('closed');
-            content.classList.toggle('shifted');
-        });
-    </script>
 </body>
 </html>
