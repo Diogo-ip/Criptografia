@@ -25,6 +25,7 @@
         overflow-x: hidden;
         transition: 0.5s;
         padding-top: 20px;
+        z-index: 1001;
     }
     
     .sidebar.show {
@@ -62,33 +63,27 @@
         font-size: 24px;
         cursor: pointer;
         color: #fff;
-        z-index: 9999; /* Garante que o botão esteja acima de tudo */
+        z-index: 1002; /* Garante que o botão esteja acima de tudo */
+    }
+
+    /* Estilos da sobreposição */
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.295); /* Fundo escurecido */
+        backdrop-filter: blur(5px); /* Efeito de desfoque */
+        z-index: 1000;
+        display: none; /* Inicialmente oculto */
+        transition: 0.5s;
+    }
+    
+    .overlay.show {
+        display: block;
     }
 </style>
-<script type="module">
-    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
-
-    const firebaseConfig = {
-        apiKey: "AIzaSyBSKWl-dEeB19s83edSTHkH-AVonc0TMII",
-        authDomain: "criptografiaa-d3f1d.firebaseapp.com",
-        projectId: "criptografiaa-d3f1d",
-        storageBucket: "criptografiaa-d3f1d.appspot.com",
-        messagingSenderId: "772676033984",
-        appId: "1:772676033984:web:407729b86105a3d2b83c25"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-
-    // Verifica o estado de autenticação do usuário
-    onAuthStateChanged(auth, (user) => {
-        if (!user) {
-            // Usuário não está autenticado, redireciona para a página de login
-            window.location.href = '../index.html';
-        }
-    });
-</script>
 </head>
 <body>
 
@@ -118,6 +113,8 @@
     </ul>
 </div>
 
+<div class="overlay" id="overlay"></div>
+
 <div class="content">
     <h1>Conteúdo Principal</h1>
     <p>Aqui está o conteúdo principal da página. Este conteúdo é separado da sidebar.</p>
@@ -130,7 +127,9 @@
 <script>
 function toggleSidebar() {
     var sidebar = document.getElementById("sidebar");
+    var overlay = document.getElementById("overlay");
     sidebar.classList.toggle("show");
+    overlay.classList.toggle("show");
 }
 </script>
 
