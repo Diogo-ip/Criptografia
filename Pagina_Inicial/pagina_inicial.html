@@ -1,171 +1,138 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Replicação da Interface</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Arial', sans-serif;
-            background-color: #0d1117;
-            color: #c9d1d9;
-            display: flex;
-            height: 100vh;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tela Inicial</title>
+<style>
+    /* Estilos gerais */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #0d1117;
+        color: #c9d1d9; /* Cor do texto mais acinzentada */
+    }
+    
+    /* Estilos da sidebar */
+    .sidebar {
+        height: 100%;
+        width: 250px;
+        position: fixed;
+        top: 0;
+        left: -250px;
+        background-color: #1a1b1f; /* Cor de fundo mais sutil */
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 20px;
+    }
+    
+    .sidebar.show {
+        left: 0;
+    }
+    
+    .sidebar ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .sidebar ul li {
+        padding: 8px; /* Espaçamento interno reduzido */
+        text-align: center;
+        font-size: 16px; /* Tamanho da fonte reduzido */
+    }
+    
+    .sidebar ul li:hover {
+        background-color: #27292e; /* Cor de fundo no hover */
+        cursor: pointer;
+    }
+    
+    /* Estilos do conteúdo principal */
+    .content {
+        margin-left: 250px;
+        padding: 20px;
+    }
+    
+    /* Estilos do botão de menu */
+    .menu-btn {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        font-size: 24px;
+        cursor: pointer;
+        color: #fff;
+        z-index: 9999; /* Garante que o botão esteja acima de tudo */
+    }
+</style>
+<script type="module">
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
 
-        .sidebar {
-            width: 250px;
-            background-color: #161b22;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            overflow-y: auto; /* Adiciona rolagem interna */
-            height: 100vh; /* Faz a sidebar ocupar toda a altura da tela */
-        }
+    const firebaseConfig = {
+        apiKey: "AIzaSyBSKWl-dEeB19s83edSTHkH-AVonc0TMII",
+        authDomain: "criptografiaa-d3f1d.firebaseapp.com",
+        projectId: "criptografiaa-d3f1d",
+        storageBucket: "criptografiaa-d3f1d.appspot.com",
+        messagingSenderId: "772676033984",
+        appId: "1:772676033984:web:407729b86105a3d2b83c25"
+    };
 
-        .sidebar h2 {
-            color: #58a6ff;
-            font-size: 1.2em; /* Aumenta o tamanho da fonte do título */
-        }
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
 
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+    // Verifica o estado de autenticação do usuário
+    onAuthStateChanged(auth, (user) => {
+        if (!user) {
+            // Usuário não está autenticado, redireciona para a página de login
+            window.location.href = '../index.html';
         }
-
-        .sidebar li {
-            margin: 10px 0;
-        }
-
-        .sidebar a {
-            color: #c9d1d9;
-            text-decoration: none;
-            display: block; /* Garante que o link ocupe toda a largura */
-            font-size: 1.1em; /* Aumenta o tamanho da fonte dos itens */
-            padding: 5px 0; /* Adiciona um pouco de espaçamento */
-        }
-
-        .sidebar a:hover {
-            color: #58a6ff;
-        }
-
-        .content {
-            flex-grow: 1;
-            background-color: #0d1117;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .content .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #21262d;
-            padding-bottom: 10px;
-        }
-
-        .content .header h1 {
-            color: #c9d1d9;
-        }
-
-        .content .header button {
-            background-color: #21262d;
-            border: none;
-            color: #c9d1d9;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        .content .header button:hover {
-            background-color: #58a6ff;
-        }
-
-        .content .main {
-            display: flex;
-            flex-direction: column;
-            margin-top: 20px;
-        }
-
-        .content .main .section {
-            margin-bottom: 20px;
-        }
-
-        .content .main .section h2 {
-            color: #c9d1d9;
-        }
-
-        .content .main .section p {
-            color: #8b949e;
-        }
-
-        .content .main .section button {
-            background-color: #238636;
-            border: none;
-            color: white;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        .content .main .section button:hover {
-            background-color: #2ea043;
-        }
-    </style>
+    });
+</script>
 </head>
 <body>
-    <div class="sidebar">
-        <h2>Diogo</h2>
-        <ul>
-            <li><a href="#">Começando</a></li>
-            <li><a href="#">Configuração e instalação</a></li>
-            <li><a href="#">Seu Authtoken</a></li>
-            <li><a href="#">Borda da Nuvem</a></li>
-            <li><a href="#">Pontos finais</a></li>
-            <li><a href="#">Arestas</a></li>
-            <li><a href="#">Domínios</a></li>
-            <li><a href="#">Endereços TCP</a></li>
-            <li><a href="#">Usuários do aplicativo</a></li>
-            <li><a href="#">Túneis</a></li>
-            <li><a href="#">Agentes</a></li>
-            <li><a href="#">Tokens de autenticação</a></li>
-            <li><a href="#">Chaves Públicas SSH</a></li>
-            <li><a href="#">Entrada</a></li>
-            <li><a href="#">Observabilidade</a></li>
-            <li><a href="#">Eventos</a></li>
-            <li><a href="#">Inspector de trânsito</a></li>
-            <li><a href="#">API</a></li>
-            <li><a href="#">Segurança</a></li>
-            <li><a href="#">Cobrança</a></li>
-            <li><a href="#">Uso</a></li>
-        </ul>
-    </div>
-    <div class="content">
-        <div class="header">
-            <h1>Sem descrição</h1>
-            <button id="logoutButton">Sair</button>
-        </div>
-        <div class="main">
-            <div class="section">
-                <h2>Pontos finais</h2>
-                <p>https://puma-comic-earwig.ngrok-free.app</p>
-                <button>Iniciar um túnel</button>
-            </div>
-            <div class="section">
-                <h2>Tráfego</h2>
-                <p>Status: Não há túneis com rótulos correspondentes online.</p>
-            </div>
-            <div class="section">
-                <h2>Adicionar módulos</h2>
-                <p>Segurança: Proteja o tráfego através do seu Edge adicionando estes módulos.</p>
-                <button>Adicionar TLS mútuo</button>
-                <button>Adicionar restrições de IP</button>
-            </div>
-        </div>
-    </div>
+
+<div class="sidebar" id="sidebar">
+    <ul>
+        <li>Inicio</li>
+        <li>Configuração</li>
+        <li>Seu Authtoken</li>
+        <li>Borda da Nuvem</li>
+        <li>Pontos finais</li>
+        <li>Arestas</li>
+        <li>Domínios</li>
+        <li>Endereços TCP</li>
+        <li>Usuários do aplicativo</li>
+        <li>Túneis</li>
+        <li>Agentes</li>
+        <li>Tokens de autenticação</li>
+        <li>Chaves Públicas SSH</li>
+        <li>Entrada</li>
+        <li>Observabilidade</li>
+        <li>Eventos</li>
+        <li>Inspector de trânsito</li>
+        <li>API</li>
+        <li>Segurança</li>
+        <li>Cobrança</li>
+        <li>Uso</li>
+    </ul>
+</div>
+
+<div class="content">
+    <h1>Conteúdo Principal</h1>
+    <p>Aqui está o conteúdo principal da página. Este conteúdo é separado da sidebar.</p>
+</div>
+
+<div class="menu-btn" onclick="toggleSidebar()">
+    &#9776; <!-- ícone de três linhas -->
+</div>
+
+<script>
+function toggleSidebar() {
+    var sidebar = document.getElementById("sidebar");
+    sidebar.classList.toggle("show");
+}
+</script>
+
 </body>
 </html>
