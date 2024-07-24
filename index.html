@@ -78,6 +78,29 @@
             margin-top: -10px;
             margin-bottom: 10px;
         }
+
+        .notification {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translate(-115px, 250%);
+            background-color: #26282c;
+            color: #21bb21;
+            padding: 15px 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                top: -100px;
+            }
+            to {
+                top: 0;
+            }
+        }
     </style>
     <script type="module">
       // Import the functions you need from the SDKs you need
@@ -121,11 +144,23 @@
         if (valid) {
             try {
                 await signInWithEmailAndPassword(auth, email, password);
-                window.location.href = './Pagina_Inicial/pagina_inicial.html'; // Redireciona para a página local
+                showNotification('Login feito com sucesso!');
+                setTimeout(() => {
+                    window.location.href = './menu/pagina_inicial.html'; // Redireciona para a página local
+                }, 3000); // Aguarda 2 segundos antes de redirecionar
             } catch (error) {
                 document.getElementById('loginError').innerText = 'Email ou senha incorretos.';
             }
         }
+      }
+
+      function showNotification(message) {
+        const notification = document.getElementById('notification');
+        notification.innerText = message;
+        notification.style.display = 'block';
+        setTimeout(() => {
+            notification.style.display = 'none';
+        }, 3000); // A notificação desaparece após 3 segundos
       }
 
       document.addEventListener('DOMContentLoaded', () => {
@@ -154,5 +189,6 @@
             <span class="error" id="loginError"></span>
         </form>
     </div>
+    <div class="notification" id="notification"></div>
 </body>
 </html>
