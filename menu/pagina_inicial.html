@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,16 +20,16 @@
         width: 250px;
         position: fixed;
         top: 0;
-        left: -250px; /* Inicia fora da tela */
+        left: -250px;
         background-color: #1a1b1f; /* Cor de fundo mais sutil */
         overflow-x: hidden;
-        transition: 0.3s; /* Tempo de transição */
+        transition: 0.5s;
         padding-top: 20px;
         z-index: 1001;
     }
     
     .sidebar.show {
-        left: 0; /* Sidebar visível */
+        left: 0;
     }
     
     .sidebar ul {
@@ -77,20 +77,11 @@
         backdrop-filter: blur(5px); /* Efeito de desfoque */
         z-index: 1000;
         display: none; /* Inicialmente oculto */
-        transition: 0.3s; /* Tempo de transição */
+        transition: 0.5s;
     }
     
     .overlay.show {
         display: block;
-    }
-    
-    /* Estilos para mensagem de carregamento */
-    .loading-message {
-        display: none;
-        color: rgb(58, 168, 14);
-        text-align: center;
-        margin-top: 20px;
-        font-size: 16px;
     }
 </style>
 </head>
@@ -133,84 +124,13 @@
     &#9776; <!-- ícone de três linhas -->
 </div>
 
-<div class="loading-message" id="loadingMessage">Login feito com sucesso!</div>
-
-<script type="module">
-    // Import the functions you need from the SDKs you need
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
-    import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
-    
-    // Your web app's Firebase configuration
-    const firebaseConfig = {
-      apiKey: "AIzaSyBSKWl-dEeB19s83edSTHkH-AVonc0TMII",
-      authDomain: "criptografiaa-d3f1d.firebaseapp.com",
-      projectId: "criptografiaa-d3f1d",
-      storageBucket: "criptografiaa-d3f1d.appspot.com",
-      messagingSenderId: "772676033984",
-      appId: "1:772676033984:web:407729b86105a3d2b83c25"
-    };
-
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-
-    // Function to handle login
-    async function login() {
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-        let valid = true;
-
-        if (!email) {
-            document.getElementById('emailError').innerText = 'O email é obrigatório.';
-            valid = false;
-        } else {
-            document.getElementById('emailError').innerText = '';
-        }
-
-        if (!password) {
-            document.getElementById('passwordError').innerText = 'A senha é obrigatória.';
-            valid = false;
-        } else {
-            document.getElementById('passwordError').innerText = '';
-        }
-
-        if (valid) {
-            document.getElementById('loadingMessage').style.display = 'block'; // Exibe a mensagem de carregamento
-            try {
-                await new Promise(resolve => setTimeout(resolve, 2000)); // Adiciona um atraso de 2 segundos
-                await signInWithEmailAndPassword(auth, email, password);
-                window.location.href = './menu/pagina_inicial.html'; // Redireciona para a página local
-            } catch (error) {
-                document.getElementById('loginError').innerText = 'Email ou senha incorretos.';
-            } finally {
-                document.getElementById('loadingMessage').style.display = 'none'; // Oculta a mensagem de carregamento
-            }
-        }
-    }
-
-    // Function to check authentication status
-    function checkAuth() {
-        onAuthStateChanged(auth, user => {
-            if (!user) {
-                window.location.href = './login.html'; // Redireciona para a página de login se não estiver autenticado
-            }
-        });
-    }
-
-    // Initialize authentication check
-    checkAuth();
-
-    function toggleSidebar() {
-        var sidebar = document.getElementById("sidebar");
-        var overlay = document.getElementById("overlay");
-        sidebar.classList.toggle("show");
-        overlay.classList.toggle("show");
-    }
-
-    // Adiciona um evento de clique na sobreposição para fechar a sidebar
-    document.getElementById("overlay").addEventListener("click", function() {
-        toggleSidebar();
-    });
+<script>
+function toggleSidebar() {
+    var sidebar = document.getElementById("sidebar");
+    var overlay = document.getElementById("overlay");
+    sidebar.classList.toggle("show");
+    overlay.classList.toggle("show");
+}
 </script>
 
 </body>
