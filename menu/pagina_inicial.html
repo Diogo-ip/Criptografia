@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -84,6 +84,40 @@
         display: block;
     }
 </style>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+  
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyBSKWl-dEeB19s83edSTHkH-AVonc0TMII",
+    authDomain: "criptografiaa-d3f1d.firebaseapp.com",
+    projectId: "criptografiaa-d3f1d",
+    storageBucket: "criptografiaa-d3f1d.appspot.com",
+    messagingSenderId: "772676033984",
+    appId: "1:772676033984:web:407729b86105a3d2b83c25"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  // Check if user is authenticated
+  onAuthStateChanged(auth, (user) => {
+    if (!user) {
+      window.location.href = 'https://diogo-ip.github.io/Criptografia/'; // Redireciona para a página de login
+    }
+  });
+
+  // Function to toggle sidebar visibility
+  function toggleSidebar() {
+    var sidebar = document.getElementById("sidebar");
+    var overlay = document.getElementById("overlay");
+    sidebar.classList.toggle("show");
+    overlay.classList.toggle("show");
+  }
+</script>
 </head>
 <body>
 
@@ -123,15 +157,6 @@
 <div class="menu-btn" onclick="toggleSidebar()">
     &#9776; <!-- ícone de três linhas -->
 </div>
-
-<script>
-function toggleSidebar() {
-    var sidebar = document.getElementById("sidebar");
-    var overlay = document.getElementById("overlay");
-    sidebar.classList.toggle("show");
-    overlay.classList.toggle("show");
-}
-</script>
 
 </body>
 </html>
