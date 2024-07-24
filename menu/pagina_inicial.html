@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tela Inicial</title>
+<style>
+    /* Estilos gerais */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #0d1117;
+        color: #c9d1d9; /* Cor do texto mais acinzentada */
+    }
+    
+    /* Estilos da sidebar */
+    .sidebar {
+        height: 100%;
+        width: 250px;
+        position: fixed;
+        top: 0;
+        left: -250px;
+        background-color: #1a1b1f; /* Cor de fundo mais sutil */
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 20px;
+        z-index: 1001;
+    }
+    
+    .sidebar.show {
+        left: 0;
+    }
+    
+    .sidebar ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .sidebar ul li {
+        padding: 8px; /* Espaçamento interno reduzido */
+        text-align: center;
+        font-size: 16px; /* Tamanho da fonte reduzido */
+    }
+    
+    .sidebar ul li:hover {
+        background-color: #27292e; /* Cor de fundo no hover */
+        cursor: pointer;
+    }
+    
+    /* Estilos do conteúdo principal */
+    .content {
+        margin-left: 250px;
+        padding: 20px;
+    }
+    
+    /* Estilos do botão de menu */
+    .menu-btn {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        font-size: 24px;
+        cursor: pointer;
+        color: #fff;
+        z-index: 1002; /* Garante que o botão esteja acima de tudo */
+    }
+
+    /* Estilos da sobreposição */
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.295); /* Fundo escurecido */
+        backdrop-filter: blur(5px); /* Efeito de desfoque */
+        z-index: 1000;
+        display: none; /* Inicialmente oculto */
+        transition: 0.5s;
+    }
+    
+    .overlay.show {
+        display: block;
+    }
+</style>
+</head>
+<body>
+
+<div class="sidebar" id="sidebar">
+    <ul>
+        <li>Inicio</li>
+        <li>Configuração</li>
+        <li>Seu Authtoken</li>
+        <li>Borda da Nuvem</li>
+        <li>Pontos finais</li>
+        <li>Arestas</li>
+        <li>Domínios</li>
+        <li>Endereços TCP</li>
+        <li>Usuários do aplicativo</li>
+        <li>Túneis</li>
+        <li>Agentes</li>
+        <li>Tokens de autenticação</li>
+        <li>Chaves Públicas SSH</li>
+        <li>Entrada</li>
+        <li>Observabilidade</li>
+        <li>Eventos</li>
+        <li>Inspector de trânsito</li>
+        <li>API</li>
+        <li>Segurança</li>
+        <li>Cobrança</li>
+        <li>Uso</li>
+    </ul>
+</div>
+
+<div class="overlay" id="overlay"></div>
+
+<div class="content">
+    <h1>Conteúdo Principal</h1>
+    <p>Aqui está o conteúdo principal da página. Este conteúdo é separado da sidebar.</p>
+</div>
+
+<div class="menu-btn" onclick="toggleSidebar()">
+    &#9776; <!-- ícone de três linhas -->
+</div>
+
+<script>
+function toggleSidebar() {
+    var sidebar = document.getElementById("sidebar");
+    var overlay = document.getElementById("overlay");
+    sidebar.classList.toggle("show");
+    overlay.classList.toggle("show");
+}
+</script>
+
+</body>
+</html>
