@@ -79,27 +79,12 @@
             margin-bottom: 10px;
         }
 
-        .notification {
+        .loading-message {
             display: none;
-            position: fixed;
-            top: 0;
-            left: 50%;
-            transform: translate(-115px, 250%);
-            background-color: #26282c;
-            color: #21bb21;
-            padding: 15px 30px;
-            border-radius: 20px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-            animation: slideDown 0.3s ease-out;
-        }
-
-        @keyframes slideDown {
-            from {
-                top: -100px;
-            }
-            to {
-                top: 0;
-            }
+            color: rgb(58, 168, 14);
+            text-align: center;
+            margin-top: 20px;
+            font-size: 16px;
         }
     </style>
     <script type="module">
@@ -142,25 +127,17 @@
         }
 
         if (valid) {
+            document.getElementById('loadingMessage').style.display = 'block'; // Exibe a mensagem de carregamento
             try {
+                await new Promise(resolve => setTimeout(resolve, 2000)); // Adiciona um atraso de 2 segundos
                 await signInWithEmailAndPassword(auth, email, password);
-                showNotification('Login feito com sucesso!');
-                setTimeout(() => {
-                    window.location.href = './menu/pagina_inicial.html'; // Redireciona para a página local
-                }, 3000); // Aguarda 2 segundos antes de redirecionar
+                window.location.href = './menu/pagina_inicial.html'; // Redireciona para a página local
             } catch (error) {
                 document.getElementById('loginError').innerText = 'Email ou senha incorretos.';
+            } finally {
+                document.getElementById('loadingMessage').style.display = 'none'; // Oculta a mensagem de carregamento
             }
         }
-      }
-
-      function showNotification(message) {
-        const notification = document.getElementById('notification');
-        notification.innerText = message;
-        notification.style.display = 'block';
-        setTimeout(() => {
-            notification.style.display = 'none';
-        }, 3000); // A notificação desaparece após 3 segundos
       }
 
       document.addEventListener('DOMContentLoaded', () => {
@@ -188,7 +165,8 @@
             <a href="#" class="btn" id="loginButton">Entrar</a>
             <span class="error" id="loginError"></span>
         </form>
+        <div class="loading-message" id="loadingMessage">Sucesso!</div>
     </div>
-    <div class="notification" id="notification"></div>
 </body>
 </html>
+
