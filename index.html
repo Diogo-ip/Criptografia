@@ -112,18 +112,20 @@
         const password = document.getElementById('password').value;
         let valid = true;
 
+        // Reset error messages
+        document.getElementById('emailError').innerText = '';
+        document.getElementById('passwordError').innerText = '';
+        document.getElementById('loginError').innerText = '';
+        document.getElementById('loadingMessage').style.display = 'none';
+
         if (!email) {
             document.getElementById('emailError').innerText = 'O email é obrigatório.';
             valid = false;
-        } else {
-            document.getElementById('emailError').innerText = '';
         }
 
         if (!password) {
             document.getElementById('passwordError').innerText = 'A senha é obrigatória.';
             valid = false;
-        } else {
-            document.getElementById('passwordError').innerText = '';
         }
 
         if (valid) {
@@ -164,9 +166,8 @@
             </div>
             <a href="#" class="btn" id="loginButton">Entrar</a>
             <span class="error" id="loginError"></span>
+            <div class="loading-message" id="loadingMessage">Aguarde...</div>
         </form>
-        <div class="loading-message" id="loadingMessage">Sucesso!</div>
     </div>
 </body>
 </html>
-
