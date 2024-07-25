@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <title>CodePen - Navbar Pure CSS</title>
   <style>:root {
-  --background: #9c88ff;
+  --background: #0d1117;
   --navbar-width: 256px;
   --navbar-width-min: 80px;
-  --navbar-dark-primary: #18283b;
+  --navbar-dark-primary: #26282c;
   --navbar-dark-secondary: #2c3e50;
   --navbar-light-primary: #f5f6fa;
   --navbar-light-secondary: #8392a5;
@@ -349,6 +349,71 @@ label[for=nav-footer-toggle] {
 #nav-footer-content::-webkit-scrollbar-thumb {
   border-radius: 99px;
   background-color: #D62929;
+
+
+}
+/* Adiciona estilos específicos para telas pequenas */
+@media (max-width: 768px) {
+  #nav-bar {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    overflow: hidden;
+  }
+  
+  #nav-header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+  }
+
+  #nav-content {
+    position: fixed;
+    top: 80px; /* Ajuste conforme a altura do cabeçalho */
+    width: 100%;
+    height: calc(100% - 80px); /* Ajuste conforme a altura do cabeçalho */
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: var(--navbar-dark-primary);
+    box-shadow: 0 0 0 16px var(--navbar-dark-primary);
+    direction: ltr;
+    transition: transform 0.3s ease;
+    transform: translateX(-100%);
+  }
+  
+  #nav-footer {
+    display: none; /* Oculta o rodapé da barra lateral em dispositivos móveis */
+  }
+
+  #nav-toggle:checked ~ #nav-content {
+    transform: translateX(0);
+  }
+
+  #nav-header #nav-title {
+    font-size: 1rem;
+  }
+
+  .nav-button {
+    font-size: 0.9rem; /* Reduz o tamanho do texto dos botões */
+    padding: 10px 15px; /* Adiciona algum espaçamento aos botões */
+  }
+
+  #nav-content .nav-button span {
+    display: none; /* Oculta o texto dos botões na visualização móvel */
+  }
+
+  #nav-toggle-burger {
+    background: var(--navbar-light-primary);
+  }
+  
+  #nav-toggle-burger:before, #nav-toggle-burger:after {
+    background: var(--navbar-light-secondary);
+  }
 }</style>
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'><link rel="stylesheet" href="./style.css">
 
@@ -357,7 +422,7 @@ label[for=nav-footer-toggle] {
 <!-- partial:index.partial.html -->
 <div id="nav-bar">
   <input id="nav-toggle" type="checkbox"/>
-  <div id="nav-header"><a id="nav-title" href="https://codepen.io" target="_blank">C<i class="fab fa-codepen"></i>DEPEN</a>
+  <div id="nav-header"><a id="nav-title" href="https://www.google.com/search?q=teste" class="fab fa-codepen"></i>PROGRAMA</a>
     <label for="nav-toggle"><span id="nav-toggle-burger"></span></label>
     <hr/>
   </div>
@@ -378,11 +443,11 @@ label[for=nav-footer-toggle] {
   <div id="nav-footer">
     <div id="nav-footer-heading">
       <div id="nav-footer-avatar"><img src="https://gravatar.com/avatar/4474ca42d303761c2901fa819c4f2547"/></div>
-      <div id="nav-footer-titlebox"><a id="nav-footer-title" href="https://codepen.io/uahnbu/pens/public" target="_blank">uahnbu</a><span id="nav-footer-subtitle">Admin</span></div>
+      <div id="nav-footer-titlebox"><a id="nav-footer-title" href="https://codepen.io/uahnbu/pens/public" target="_blank">Diogo</a><span id="nav-footer-subtitle">Administrador</span></div>
       <label for="nav-footer-toggle"><i class="fas fa-caret-up"></i></label>
     </div>
     <div id="nav-footer-content">
-      <Lorem>ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Lorem>
+      <Lorem>Aqui vai ficar umas informações inportantes.</Lorem>
     </div>
   </div>
 </div>
